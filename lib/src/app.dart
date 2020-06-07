@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:shuriapp/src/pages/home_page.dart';
+import 'package:shuriapp/src/pages/onboarding_page.dart';
 import 'package:shuriapp/src/pages/sign_up.dart';
 
 class App extends StatelessWidget {
@@ -11,6 +13,11 @@ class App extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    SystemChrome.setSystemUIOverlayStyle(
+      SystemUiOverlayStyle.dark.copyWith(statusBarColor: Colors.transparent),
+    );
+    // cache image
+    precacheImage(AssetImage("assets/white_logo.webp"), context);
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'shuriapp',
@@ -25,10 +32,14 @@ class App extends StatelessWidget {
   }
 
   Widget _handleCurrentScreen() {
+    bool seen = (prefs.getBool('seen') ?? false);
     bool loggedIn = (prefs.getBool('loggedIn') ?? false);
-    if (loggedIn) {
-      return HomePage();
+    if (seen) {
+      if (loggedIn) {
+        return HomePage();
+      }
+      return SignUp(prefs: prefs);
     }
-    return SignUp(prefs: prefs);
+    return OnBoardingPage(prefs: prefs);
   }
 }

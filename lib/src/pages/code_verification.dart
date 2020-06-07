@@ -49,7 +49,7 @@ class _CodeVerificationState extends State<CodeVerification> {
               children: [
                 Center(
                   child: Image.asset(
-                    'assets/images/white_logo.png',
+                    'assets/white_logo.webp',
                     width: MediaQuery.of(context).size.width * 0.4,
                   ),
                 ),

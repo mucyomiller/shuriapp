@@ -6,6 +6,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:shuriapp/src/pages/code_verification.dart';
+import 'package:shuriapp/src/pages/home_page.dart';
 import 'package:shuriapp/src/services/authentication_service.dart';
 
 class SignUp extends StatefulWidget {
@@ -46,7 +47,7 @@ class _SignUpState extends State<SignUp> {
                     children: <Widget>[
                       Center(
                         child: Image.asset(
-                          'assets/images/white_logo.png',
+                          'assets/white_logo.webp',
                           width: MediaQuery.of(context).size.width * 0.50,
                         ),
                       ),
@@ -188,7 +189,14 @@ class _SignUpState extends State<SignUp> {
                                         setState(() {
                                           isLoading = true;
                                         });
-                                        _sendVerificationCode(context);
+                                        // _sendVerificationCode(context);
+                                        Navigator.pushAndRemoveUntil(
+                                          context,
+                                          MaterialPageRoute(
+                                            builder: (context) => HomePage(),
+                                          ),
+                                          ModalRoute.withName("/homepage"),
+                                        );
                                       }
                                     },
                                     child: !isLoading

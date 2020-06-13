@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
 import 'package:line_icons/line_icons.dart';
+import 'package:shuriapp/src/pages/profile_page.dart';
 import 'package:shuriapp/src/screens/home_screen.dart';
 
 class HomePage extends StatefulWidget {
@@ -13,15 +14,15 @@ class _HomePageState extends State<HomePage> {
   static const TextStyle optionStyle =
       TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
   static List<Widget> _widgetOptions = <Widget>[
-    Container(),
     Text(
       'Index 1: Release',
       style: optionStyle,
     ),
     Text(
-      'Index 3: Profile',
+      'Index 1: Release',
       style: optionStyle,
     ),
+    ProfilePage(),
   ];
 
   @override

@@ -12,7 +12,13 @@ class _LanguagesScreenState extends State<LanguagesScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('Languages')),
+      appBar: AppBar(
+        title: Text(
+          'Languages',
+          style: TextStyle(color: Colors.white),
+        ),
+        iconTheme: IconThemeData(color: Colors.white),
+      ),
       body: SettingsList(
         sections: [
           SettingsSection(tiles: [
@@ -24,24 +30,17 @@ class _LanguagesScreenState extends State<LanguagesScreen> {
               },
             ),
             SettingsTile(
-              title: "Spanish",
+              title: "Kinyarwanda",
               trailing: trailingWidget(1),
               onTap: () {
                 changeLanguage(1);
               },
             ),
             SettingsTile(
-              title: "Chinese",
+              title: "French",
               trailing: trailingWidget(2),
               onTap: () {
                 changeLanguage(2);
-              },
-            ),
-            SettingsTile(
-              title: "German",
-              trailing: trailingWidget(3),
-              onTap: () {
-                changeLanguage(3);
               },
             ),
           ]),

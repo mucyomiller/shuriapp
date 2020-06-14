@@ -9,17 +9,22 @@ class SettingsScreen extends StatefulWidget {
 }
 
 class _SettingsScreenState extends State<SettingsScreen> {
-  bool lockInBackground = true;
+  bool pickNotification = true;
   bool notificationsEnabled = true;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('Settings')),
+      appBar: AppBar(
+          iconTheme: IconThemeData(color: Colors.white),
+          title: Text(
+            'Settings',
+            style: TextStyle(color: Colors.white),
+          )),
       body: SettingsList(
         sections: [
           SettingsSection(
-            title: 'Common',
+            title: 'Languages',
             tiles: [
               SettingsTile(
                 title: 'Language',
@@ -30,51 +35,58 @@ class _SettingsScreenState extends State<SettingsScreen> {
                       builder: (BuildContext context) => LanguagesScreen()));
                 },
               ),
-              SettingsTile(
-                  title: 'Environment',
-                  subtitle: 'Production',
-                  leading: Icon(Icons.cloud_queue)),
             ],
           ),
           SettingsSection(
-            title: 'Account',
+            title: 'Reminder',
             tiles: [
-              SettingsTile(title: 'Phone number', leading: Icon(Icons.phone)),
-              SettingsTile(title: 'Email', leading: Icon(Icons.email)),
-              SettingsTile(title: 'Sign out', leading: Icon(Icons.exit_to_app)),
+              SettingsTile(
+                title: 'Pick up reminder',
+                subtitle: 'Currently set to 1 KM before pick up spot',
+                leading: Icon(Icons.pin_drop),
+                onTap: () {
+                  print('clicked!');
+                },
+              ),
+              SettingsTile(
+                title: 'Drop reminder',
+                subtitle: 'Currently set to 1 KM before drop spot',
+                leading: Icon(Icons.pin_drop),
+              ),
             ],
           ),
           SettingsSection(
-            title: 'Security',
+            title: 'Notifications',
             tiles: [
               SettingsTile.switchTile(
-                title: 'Lock app in background',
-                leading: Icon(Icons.phonelink_lock),
-                switchValue: lockInBackground,
+                title: 'Pick up notifications',
+                subtitle: 'When bus reached at pick up reminder spot',
+                switchValue: pickNotification,
                 onToggle: (bool value) {
                   setState(() {
-                    lockInBackground = value;
+                    pickNotification = value;
                     notificationsEnabled = value;
                   });
                 },
               ),
               SettingsTile.switchTile(
-                  title: 'Use fingerprint',
-                  leading: Icon(Icons.fingerprint),
+                  title: 'Drop notification',
+                  subtitle: 'When bus reached at pick up reminder spot',
                   onToggle: (bool value) {},
                   switchValue: false),
               SettingsTile.switchTile(
-                title: 'Change password',
-                leading: Icon(Icons.lock),
+                title: 'Reached at School',
+                subtitle: 'When student gets at school',
                 switchValue: true,
                 onToggle: (bool value) {},
               ),
               SettingsTile.switchTile(
                 title: 'Enable Notifications',
-                enabled: notificationsEnabled,
                 leading: Icon(Icons.notifications_active),
-                switchValue: true,
-                onToggle: (value) {},
+                switchValue: notificationsEnabled,
+                onToggle: (value) {
+                  notificationsEnabled = value;
+                },
               ),
             ],
           ),

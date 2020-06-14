@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:shuriapp/src/widgets/announcement_card.dart';
 
 class AnnouncementScreen extends StatelessWidget {
   @override
@@ -11,8 +12,13 @@ class AnnouncementScreen extends StatelessWidget {
         ),
       ),
       body: Container(
-        child: Center(
-          child: Text('Text'),
+        child: ListView(
+          children: <Widget>[
+            AnnouncementCard(),
+            AnnouncementCard(),
+            AnnouncementCard(),
+            AnnouncementCard(),
+          ],
         ),
       ),
     );

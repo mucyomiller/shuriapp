@@ -13,12 +13,17 @@ class Choice {
 }
 
 const List<Choice> choices = const <Choice>[
-  const Choice(title: 'Setting', icon: Icons.settings),
+  Choice(title: 'Setting', icon: Icons.settings),
+  Choice(title: 'Payment', icon: Icons.payment),
 ];
 
 class _ProfileScreenState extends State<ProfileScreen> {
   void _select(Choice choice) {
-    Navigator.pushNamed(context, '/settings');
+    if (choice.title == 'Setting') {
+      Navigator.pushNamed(context, '/settings');
+    } else {
+      Navigator.pushNamed(context, '/payment');
+    }
   }
 
   @override

@@ -1,4 +1,3 @@
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:shuriapp/src/models/bus_stops.dart';
 
@@ -7,46 +6,93 @@ class StudentTile extends StatelessWidget {
   StudentTile({this.student});
   @override
   Widget build(BuildContext context) {
-    String defaultUrl = 'https://avatars1.githubusercontent.com/u/11447549';
     return Card(
       clipBehavior: Clip.antiAliasWithSaveLayer,
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
-      child: ListTile(
-        dense: true,
-        contentPadding: EdgeInsets.all(8.0),
-        leading: Container(
-          width: 45.0,
-          child: ClipRRect(
-            borderRadius: BorderRadius.all(
-              Radius.circular(45.0),
+      child: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: Row(
+          children: <Widget>[
+            Padding(
+              padding: const EdgeInsets.only(right: 8.0),
+              child: CircleAvatar(
+                radius: 30.0,
+                backgroundImage: AssetImage('assets/default_avatar.png'),
+                backgroundColor: Colors.transparent,
+              ),
             ),
-            child: CachedNetworkImage(
-              imageUrl: defaultUrl,
-              imageBuilder: (context, imageProvider) => Container(
-                decoration: BoxDecoration(
-                  image: DecorationImage(
-                    image: imageProvider,
-                    fit: BoxFit.fill,
+            Expanded(
+              child: Column(
+                children: <Widget>[
+                  Row(
+                    children: <Widget>[
+                      Text(
+                        'Names:',
+                        style: TextStyle(
+                            color: Colors.black, fontWeight: FontWeight.bold),
+                      ),
+                      SizedBox(
+                        width: 5,
+                      ),
+                      Flexible(child: Text('Munyantebe Hertier')),
+                    ],
                   ),
-                ),
+                  SizedBox(
+                    height: 5,
+                  ),
+                  Row(
+                    children: <Widget>[
+                      Text(
+                        'School:',
+                        style: TextStyle(
+                            color: Colors.black, fontWeight: FontWeight.bold),
+                      ),
+                      SizedBox(
+                        width: 5,
+                      ),
+                      Flexible(child: Text('Excella School')),
+                    ],
+                  ),
+                  SizedBox(
+                    height: 5,
+                  ),
+                  Row(
+                    children: <Widget>[
+                      Text(
+                        'Level:',
+                        style: TextStyle(
+                            color: Colors.black, fontWeight: FontWeight.bold),
+                      ),
+                      SizedBox(
+                        width: 5,
+                      ),
+                      Flexible(child: Text('P6')),
+                    ],
+                  ),
+                  SizedBox(
+                    height: 5,
+                  ),
+                  Row(
+                    children: <Widget>[
+                      Text(
+                        'Bus plate:',
+                        style: TextStyle(
+                            color: Colors.black, fontWeight: FontWeight.bold),
+                      ),
+                      SizedBox(
+                        width: 5,
+                      ),
+                      Flexible(child: Text('RAA 234P')),
+                    ],
+                  ),
+                ],
               ),
-              placeholder: (context, url) => CircularProgressIndicator(
-                valueColor: new AlwaysStoppedAnimation<Color>(
-                  Color(0xFF18ACA1),
-                ),
-              ),
-              errorWidget: (context, url, error) =>
-                  Image.asset('assets/images/default_avatar.png'),
             ),
-          ),
-        ),
-        title: Text(
-          '${student.firstName} ${student.lastName}',
-          style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16.0),
-        ),
-        subtitle: Text(
-          student.gender,
-          style: TextStyle(color: Colors.grey),
+            Icon(
+              Icons.arrow_forward_ios,
+              color: Colors.black54,
+            )
+          ],
         ),
       ),
     );

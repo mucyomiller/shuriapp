@@ -82,6 +82,37 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   fontFamily: 'Montserrat'),
             ),
             SizedBox(height: 15.0),
+            ListView(
+              shrinkWrap: true,
+              children: ListTile.divideTiles(
+                context: context,
+                tiles: [
+                  ListTile(
+                    leading: Icon(Icons.phone_in_talk,
+                        color: Theme.of(context).primaryColor),
+                    title: Text(
+                      '+250784680568',
+                      style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          decoration: TextDecoration.underline),
+                    ),
+                    subtitle: Text('Tel. Number'),
+                  ),
+                  ListTile(
+                    leading: Icon(Icons.email,
+                        color: Theme.of(context).primaryColor),
+                    title: Text('rindirobruce@gmail.com'),
+                    subtitle: Text('Email'),
+                  ),
+                  ListTile(
+                    leading: Icon(Icons.location_on,
+                        color: Theme.of(context).primaryColor),
+                    title: Text('Rindiro Bruce'),
+                    subtitle: Text('Location'),
+                  ),
+                ],
+              ).toList(),
+            )
           ],
         ));
   }

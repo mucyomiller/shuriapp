@@ -8,6 +8,14 @@
             "name": "Flutter",
             "request": "launch",
             "type": "dart"
+        },
+        {
+            "name": "Flutter Profile",
+            "request": "launch",
+            "type": "dart",
+            "args": [
+                "--profile"
+            ]
         }
     ]
 }

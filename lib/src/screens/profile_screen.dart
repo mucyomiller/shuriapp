@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:shuriapp/src/screens/settings_screen.dart';
 
 class ProfileScreen extends StatefulWidget {
   @override

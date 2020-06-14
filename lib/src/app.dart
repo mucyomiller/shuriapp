@@ -3,7 +3,9 @@ import 'package:flutter/services.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:shuriapp/src/pages/home_page.dart';
 import 'package:shuriapp/src/pages/onboarding_page.dart';
+import 'package:shuriapp/src/pages/payment_page.dart';
 import 'package:shuriapp/src/pages/sign_up.dart';
+import 'package:shuriapp/src/screens/settings_screen.dart';
 
 class App extends StatelessWidget {
   // This widget is the root of your application.
@@ -22,11 +24,12 @@ class App extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'shuriapp',
       theme: ThemeData(
-        primaryColor: Color(0xFFFAB72A),
-      ),
+          primaryColor: Color(0xFFFAB72A), accentColor: Colors.orangeAccent),
       home: _handleCurrentScreen(),
       routes: <String, WidgetBuilder>{
         '/home': (BuildContext context) => HomePage(),
+        '/settings': (BuildContext context) => SettingsScreen(),
+        '/payment': (BuildContext context) => PaymentPage()
       },
     );
   }

@@ -7,7 +7,6 @@ import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:shuriapp/src/pages/code_verification.dart';
 import 'package:shuriapp/src/pages/home_page.dart';
-import 'package:shuriapp/src/screens/settings_screen.dart';
 import 'package:shuriapp/src/services/authentication_service.dart';
 
 class SignUp extends StatefulWidget {
@@ -194,7 +193,7 @@ class _SignUpState extends State<SignUp> {
                                         Navigator.pushAndRemoveUntil(
                                           context,
                                           MaterialPageRoute(
-                                            builder: (context) => SettingsScreen(),
+                                            builder: (context) => HomePage(),
                                           ),
                                           ModalRoute.withName("/homepage"),
                                         );

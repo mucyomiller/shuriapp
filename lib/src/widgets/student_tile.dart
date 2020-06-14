@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:shuriapp/src/models/bus_stops.dart';
+import 'package:shuriapp/src/widgets/status_indicator.dart';
 
 class StudentTile extends StatelessWidget {
   final Student student;
@@ -85,6 +86,10 @@ class StudentTile extends StatelessWidget {
                       Flexible(child: Text('RAA 234P')),
                     ],
                   ),
+                  SizedBox(
+                    height: 5,
+                  ),
+                  StatusIndicator(status: Status.atschool, title: 'At school')
                 ],
               ),
             ),

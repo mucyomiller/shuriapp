@@ -9,9 +9,14 @@ class StudentList extends StatelessWidget {
       child: ListView.builder(
           itemCount: 5,
           itemBuilder: (context, index) {
-            return StudentTile(
-              student: bs.Student(
-                  firstName: "John", lastName: "Doe", gender: "male"),
+            return GestureDetector(
+              onTap: () {
+                Navigator.pushNamed(context, '/mapscreen');
+              },
+              child: StudentTile(
+                student: bs.Student(
+                    firstName: "John", lastName: "Doe", gender: "male"),
+              ),
             );
           }),
     );

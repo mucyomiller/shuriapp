@@ -28,30 +28,6 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: <Widget>[
-            Text(
-              'Munyantebe Hertier',
-              style: TextStyle(
-                color: Colors.white,
-                fontSize: 16,
-                fontWeight: FontWeight.bold,
-              ),
-            ),
-            Text(
-              'Excella school',
-              style: TextStyle(
-                color: Colors.white,
-                fontSize: 12,
-              ),
-            )
-          ],
-        ),
-        iconTheme: IconThemeData(color: Colors.white),
-      ),
       body: Stack(children: <Widget>[
         GoogleMap(
           trafficEnabled: false,

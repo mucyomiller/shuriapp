@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:shuriapp/src/models/student_list.dart';
+import 'package:shuriapp/src/services/authentication_service.dart';
 
 class HomeScreen extends StatefulWidget {
   @override
@@ -12,12 +15,15 @@ class _HomeScreenState extends State<HomeScreen> {
   String _mapStyle;
   final LatLng _center = const LatLng(-1.967165, 30.103201);
   GoogleMapController mapController;
+  Future<StudentList> studentList;
 
   @override
   void initState() {
+    super.initState();
     rootBundle.loadString('assets/map_style.txt').then((string) {
       _mapStyle = string;
     });
+    studentList = getStudentList();
   }
 
   void _onMapCreated(GoogleMapController controller) {
@@ -42,111 +48,56 @@ class _HomeScreenState extends State<HomeScreen> {
               zoom: 14.0,
             ),
           ),
-          Positioned(
-              top: 0,
-              left: 0,
-              right: 0,
-              child: Container(
-                color: Colors.white54,
-                height: MediaQuery.of(context).size.shortestSide * 0.25,
-                child: ListView(
-                  // This next line does the trick.
-                  scrollDirection: Axis.horizontal,
-                  children: <Widget>[
-                    Container(
-                      width: 100.0,
-                      color: Colors.transparent,
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                        children: <Widget>[
-                          CircleAvatar(
-                            radius: 25,
-                            backgroundColor: Theme.of(context).primaryColor,
-                            child: CircleAvatar(
-                              backgroundImage:
-                                  AssetImage('assets/default_avatar.png'),
-                              radius: 22,
-                            ),
-                          ),
-                          Text(
-                            'Joe',
-                            style: TextStyle(
-                                fontWeight: FontWeight.bold,
-                                color: Colors.black),
-                          )
-                        ],
-                      ),
-                    ),
-                    Container(
-                      width: 100.0,
-                      color: Colors.transparent,
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                        children: <Widget>[
-                          CircleAvatar(
-                            radius: 25.0,
-                            backgroundImage:
-                                AssetImage('assets/default_avatar.png'),
-                            backgroundColor: Colors.transparent,
-                          ),
-                          Text(
-                            'Brandon',
-                            style: TextStyle(
-                                fontWeight: FontWeight.bold,
-                                color: Colors.black),
-                          )
-                        ],
-                      ),
-                    ),
-                    Container(
-                      width: 100.0,
-                      color: Colors.transparent,
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                        children: <Widget>[
-                          CircleAvatar(
-                            radius: 25.0,
-                            backgroundImage:
-                                AssetImage('assets/default_avatar.png'),
-                            backgroundColor: Colors.transparent,
-                          ),
-                          Text(
-                            'Terry',
-                            style: TextStyle(
-                                fontWeight: FontWeight.bold,
-                                color: Colors.black),
-                          )
-                        ],
-                      ),
-                    ),
-                    Container(
-                      width: 100.0,
-                      color: Colors.transparent,
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                        children: <Widget>[
-                          CircleAvatar(
-                            radius: 25.0,
-                            backgroundImage:
-                                AssetImage('assets/default_avatar.png'),
-                            backgroundColor: Colors.transparent,
-                          ),
-                          Text(
-                            'Susanna',
-                            style: TextStyle(
-                                fontWeight: FontWeight.bold,
-                                color: Colors.black),
-                          )
-                        ],
-                      ),
-                    ),
-                  ],
-                ),
-              )),
+          FutureBuilder<StudentList>(
+            future: studentList,
+            builder: (context, snapshot) {
+              if (snapshot.hasData) {
+                return Positioned(
+                    top: 0,
+                    left: 0,
+                    right: 0,
+                    child: Container(
+                      color: Colors.white54,
+                      height: MediaQuery.of(context).size.shortestSide * 0.25,
+                      child: ListView.builder(
+                          scrollDirection: Axis.horizontal,
+                          itemCount: snapshot.data.data.length,
+                          itemBuilder: (context, index) {
+                            return Container(
+                              width: 100.0,
+                              color: Colors.transparent,
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceEvenly,
+                                children: <Widget>[
+                                  CircleAvatar(
+                                    radius: 25,
+                                    backgroundColor:
+                                        Theme.of(context).primaryColor,
+                                    child: CircleAvatar(
+                                      backgroundImage: AssetImage(
+                                          'assets/default_avatar.png'),
+                                      radius: 22,
+                                    ),
+                                  ),
+                                  Text(
+                                    snapshot.data.data[index].firstName,
+                                    style: TextStyle(
+                                        fontWeight: FontWeight.bold,
+                                        color: Colors.black),
+                                  )
+                                ],
+                              ),
+                            );
+                          }),
+                    ));
+              } else if (snapshot.hasError) {}
+              return SpinKitDoubleBounce(
+                color: Theme.of(context).primaryColor,
+              );
+            },
+          ),
           Positioned(
             bottom: 5,
             left: 0,
@@ -163,7 +114,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: <Widget>[
                           Text(
-                            'Mucyo Miller',
+                            'Bruce ',
                             style: TextStyle(
                                 color: Theme.of(context).primaryColor,
                                 fontWeight: FontWeight.bold),
@@ -182,7 +133,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       children: <Widget>[
                         Column(
                           children: <Widget>[
-                            Text('bus plaate'),
+                            Text('bus plate'),
                             SizedBox(
                               height: 8,
                             ),

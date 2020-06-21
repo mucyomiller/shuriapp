@@ -11,7 +11,7 @@ class StudentList extends StatelessWidget {
           itemBuilder: (context, index) {
             return GestureDetector(
               onTap: () {
-                Navigator.pushNamed(context, '/mapscreen');
+                Navigator.pushNamed(context, '/homescreen');
               },
               child: StudentTile(
                 student: bs.Student(

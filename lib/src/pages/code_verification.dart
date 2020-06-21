@@ -163,7 +163,7 @@ class _CodeVerificationState extends State<CodeVerification> {
     var _code = _codeTextEditingController.text;
     if (_code.isNotEmpty) {
       // validate OTP code
-      var rsp = await driverValidateOTP(widget.phoneNumber, _code);
+      var rsp = await studentValidateOTP(widget.phoneNumber, _code);
       // reset btn loading state
       setState(() {
         isLoading = false;

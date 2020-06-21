@@ -5,7 +5,7 @@ import 'package:shuriapp/src/pages/home_page.dart';
 import 'package:shuriapp/src/pages/onboarding_page.dart';
 import 'package:shuriapp/src/pages/payment_page.dart';
 import 'package:shuriapp/src/pages/sign_up.dart';
-import 'package:shuriapp/src/screens/map_screen.dart';
+import 'package:shuriapp/src/screens/home_screen.dart';
 import 'package:shuriapp/src/screens/settings_screen.dart';
 
 class App extends StatelessWidget {
@@ -31,7 +31,7 @@ class App extends StatelessWidget {
         '/home': (BuildContext context) => HomePage(),
         '/settings': (BuildContext context) => SettingsScreen(),
         '/payment': (BuildContext context) => PaymentPage(),
-        '/mapscreen': (BuildContext context) => MapScreen(),
+        '/homescreen': (BuildContext context) => HomeScreen(),
       },
     );
   }

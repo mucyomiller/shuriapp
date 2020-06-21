@@ -189,14 +189,14 @@ class _SignUpState extends State<SignUp> {
                                         setState(() {
                                           isLoading = true;
                                         });
-                                        // _sendVerificationCode(context);
-                                        Navigator.pushAndRemoveUntil(
-                                          context,
-                                          MaterialPageRoute(
-                                            builder: (context) => HomePage(),
-                                          ),
-                                          ModalRoute.withName("/homepage"),
-                                        );
+                                        _sendVerificationCode(context);
+                                        // Navigator.pushAndRemoveUntil(
+                                        //   context,
+                                        //   MaterialPageRoute(
+                                        //     builder: (context) => HomePage(),
+                                        //   ),
+                                        //   ModalRoute.withName("/homepage"),
+                                        // );
                                       }
                                     },
                                     child: !isLoading
@@ -235,7 +235,7 @@ class _SignUpState extends State<SignUp> {
     var tel = _phoneTextEditController.text;
     if (code != null && tel != null && tel != "") {
       var _tel = "$code${int.parse(tel)}";
-      var rsp = await driverVerifyNumber(_tel);
+      var rsp = await studentVerifyNumber(_tel);
       // check if request was accepted by server!
       // TODO: remove code after implementing SMS gateway
       if (rsp['status'] == 200) {

@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
 import 'package:line_icons/line_icons.dart';
 import 'package:shuriapp/src/screens/announcement_screen.dart';
+import 'package:shuriapp/src/screens/home_screen.dart';
 import 'package:shuriapp/src/screens/profile_screen.dart';
-import 'package:shuriapp/src/screens/student_alert_screen.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -15,7 +15,7 @@ class _HomePageState extends State<HomePage> {
   static const TextStyle optionStyle =
       TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
   static List<Widget> _widgetOptions = <Widget>[
-    StudentAlertScreen(),
+    HomeScreen(),
     AnnouncementScreen(),
     ProfileScreen(),
   ];

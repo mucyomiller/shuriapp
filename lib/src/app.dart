@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:shuriapp/src/pages/home_page.dart';
 import 'package:shuriapp/src/pages/onboarding_page.dart';
 import 'package:shuriapp/src/pages/payment_page.dart';
 import 'package:shuriapp/src/pages/sign_up.dart';
+import 'package:shuriapp/src/rx/current_student.dart';
 import 'package:shuriapp/src/screens/home_screen.dart';
 import 'package:shuriapp/src/screens/settings_screen.dart';
 
@@ -21,18 +23,23 @@ class App extends StatelessWidget {
     );
     // cache image
     precacheImage(AssetImage("assets/white_logo.webp"), context);
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: 'shuriapp',
-      theme: ThemeData(
-          primaryColor: Color(0xFFFAB72A), accentColor: Colors.orangeAccent),
-      home: _handleCurrentScreen(),
-      routes: <String, WidgetBuilder>{
-        '/home': (BuildContext context) => HomePage(),
-        '/settings': (BuildContext context) => SettingsScreen(),
-        '/payment': (BuildContext context) => PaymentPage(),
-        '/homescreen': (BuildContext context) => HomeScreen(),
-      },
+    return MultiProvider(
+      providers: [
+        ChangeNotifierProvider<CurrentStudent>.value(value: CurrentStudent())
+      ],
+      child: MaterialApp(
+        debugShowCheckedModeBanner: false,
+        title: 'shuriapp',
+        theme: ThemeData(
+            primaryColor: Color(0xFFFAB72A), accentColor: Colors.orangeAccent),
+        home: _handleCurrentScreen(),
+        routes: <String, WidgetBuilder>{
+          '/home': (BuildContext context) => HomePage(),
+          '/settings': (BuildContext context) => SettingsScreen(),
+          '/payment': (BuildContext context) => PaymentPage(),
+          '/homescreen': (BuildContext context) => HomeScreen(),
+        },
+      ),
     );
   }
 

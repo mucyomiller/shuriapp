@@ -11,21 +11,22 @@ const BASE_URL = 'http://shuriapi.herokuapp.com/api/v1';
 
 Map<String, String> headers = {"Content-type": "application/json"};
 
-Future<Map<String, dynamic>> driverVerifyNumber(
+Future<Map<String, dynamic>> studentVerifyNumber(
     String driverPhoneNumber) async {
   var url = BASE_URL + '/account/mobile/validate';
   final response = await http.post(url,
       headers: headers,
       body: json
-          .encode({'resource': "Driver", 'phoneNumber': driverPhoneNumber}));
+          .encode({'resource': "Guardian", 'phoneNumber': driverPhoneNumber}));
   var authResponse = json.decode(response.body);
+  if (kDebugMode) print('API response -> $authResponse');
   if (response.statusCode == 200) {
     return {'status': 200, 'message': authResponse['message']};
   }
   return {'status': response.statusCode, 'message': authResponse['message']};
 }
 
-Future<Map<String, dynamic>> driverValidateOTP(
+Future<Map<String, dynamic>> studentValidateOTP(
     String driverPhoneNumber, String otp) async {
   if (kDebugMode) {
     print('phone -> $driverPhoneNumber');
@@ -36,7 +37,7 @@ Future<Map<String, dynamic>> driverValidateOTP(
   final response = await http.post(url,
       headers: headers,
       body: json.encode({
-        'resource': "Driver",
+        'resource': "Guardian",
         'code': otp,
         'phoneNumber': driverPhoneNumber
       }));

@@ -4,6 +4,7 @@ import 'package:line_icons/line_icons.dart';
 import 'package:shuriapp/src/screens/announcement_screen.dart';
 import 'package:shuriapp/src/screens/home_screen.dart';
 import 'package:shuriapp/src/screens/profile_screen.dart';
+import 'package:shuriapp/src/screens/alert_screen.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -17,6 +18,7 @@ class _HomePageState extends State<HomePage> {
   static List<Widget> _widgetOptions = <Widget>[
     HomeScreen(),
     AnnouncementScreen(),
+    AlertScreen(),
     ProfileScreen(),
   ];
 
@@ -30,14 +32,14 @@ class _HomePageState extends State<HomePage> {
         ]),
         child: SafeArea(
           child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 15.0, vertical: 8),
+            padding: const EdgeInsets.symmetric(horizontal: 5.0, vertical: 8),
             child: GNav(
                 gap: 8,
                 activeColor: Colors.white,
                 iconSize: 24,
-                padding: EdgeInsets.symmetric(horizontal: 20, vertical: 5),
+                padding: EdgeInsets.symmetric(horizontal: 14, vertical: 5),
                 duration: Duration(milliseconds: 800),
-                tabBackgroundColor: Theme.of(context).primaryColor,
+                tabBackgroundColor: Color(0XFF7B68EE),
                 tabs: [
                   GButton(
                     icon: LineIcons.home,
@@ -46,6 +48,10 @@ class _HomePageState extends State<HomePage> {
                   GButton(
                     icon: LineIcons.bell_o,
                     text: 'Release',
+                  ),
+                  GButton(
+                    icon: LineIcons.bell_o,
+                    text: 'Alert',
                   ),
                   GButton(
                     icon: LineIcons.user,

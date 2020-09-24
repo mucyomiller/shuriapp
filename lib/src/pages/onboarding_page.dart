@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:introduction_screen/introduction_screen.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:shuriapp/src/pages/sign_up.dart';
+import 'package:shuriapp/src/pages/home_page.dart';
 
 class OnBoardingPage extends StatefulWidget {
   final SharedPreferences prefs;
@@ -86,7 +87,7 @@ class _OnBoardingPageState extends State<OnBoardingPage> {
       done: const Text('Done', style: TextStyle(fontWeight: FontWeight.w600)),
       dotsDecorator: const DotsDecorator(
         size: Size(10.0, 10.0),
-        color: Color(0xFFBDBDBD),
+        color: Color(0xFF7B68EE),
         activeSize: Size(22.0, 10.0),
         activeShape: RoundedRectangleBorder(
           borderRadius: BorderRadius.all(Radius.circular(25.0)),

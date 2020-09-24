@@ -183,7 +183,7 @@ class _SignUpState extends State<SignUp> {
                                     ),
                                     padding:
                                         EdgeInsets.symmetric(vertical: 10.0),
-                                    color: Color(0xFFF5CA19),
+                                    color: Color(0xFF7B68EE),
                                     onPressed: () {
                                       if (!isLoading) {
                                         setState(() {
@@ -243,6 +243,9 @@ class _SignUpState extends State<SignUp> {
         setState(() {
           isLoading = false;
         });
+        // adding data in shared preference
+
+        // end
         return Navigator.push(
           context,
           MaterialPageRoute(

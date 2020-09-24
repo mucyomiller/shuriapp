@@ -48,56 +48,94 @@ class _HomeScreenState extends State<HomeScreen> {
               zoom: 14.0,
             ),
           ),
-          FutureBuilder<StudentList>(
-            future: studentList,
-            builder: (context, snapshot) {
-              if (snapshot.hasData) {
-                return Positioned(
-                    top: 0,
-                    left: 0,
-                    right: 0,
-                    child: Container(
-                      color: Colors.white54,
-                      height: MediaQuery.of(context).size.shortestSide * 0.25,
-                      child: ListView.builder(
-                          scrollDirection: Axis.horizontal,
-                          itemCount: snapshot.data.data.length,
-                          itemBuilder: (context, index) {
-                            return Container(
-                              width: 100.0,
-                              color: Colors.transparent,
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.center,
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceEvenly,
-                                children: <Widget>[
-                                  CircleAvatar(
-                                    radius: 25,
-                                    backgroundColor:
-                                        Theme.of(context).primaryColor,
-                                    child: CircleAvatar(
-                                      backgroundImage: AssetImage(
-                                          'assets/default_avatar.png'),
-                                      radius: 22,
-                                    ),
-                                  ),
-                                  Text(
-                                    snapshot.data.data[index].firstName,
-                                    style: TextStyle(
-                                        fontWeight: FontWeight.bold,
-                                        color: Colors.black),
-                                  )
-                                ],
+          Positioned(
+              top: 0,
+              left: 0,
+              right: 0,
+              child: Container(
+                color: Colors.white54,
+                height: MediaQuery.of(context).size.shortestSide * 0.25,
+                child: ListView.builder(
+                    scrollDirection: Axis.horizontal,
+                    itemCount: 7,
+                    itemBuilder: (context, index) {
+                      return Container(
+                        width: 100.0,
+                        color: Colors.transparent,
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          children: <Widget>[
+                            CircleAvatar(
+                              radius: 25,
+                              backgroundColor: Theme.of(context).primaryColor,
+                              child: CircleAvatar(
+                                backgroundImage:
+                                    AssetImage('assets/default_avatar.png'),
+                                radius: 22,
                               ),
-                            );
-                          }),
-                    ));
-              } else if (snapshot.hasError) {}
-              return SpinKitDoubleBounce(
-                color: Theme.of(context).primaryColor,
-              );
-            },
-          ),
+                            ),
+                            Text(
+                              'Student 1',
+                              style: TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.black),
+                            )
+                          ],
+                        ),
+                      );
+                    }),
+              )),
+          // FutureBuilder<StudentList>(
+          //   future: studentList,
+          //   builder: (context, snapshot) {
+          //     if (snapshot.hasData) {
+          //       return Positioned(
+          //           top: 0,
+          //           left: 0,
+          //           right: 0,
+          //           child: Container(
+          //             color: Colors.white54,
+          //             height: MediaQuery.of(context).size.shortestSide * 0.25,
+          //             child: ListView.builder(
+          //                 scrollDirection: Axis.horizontal,
+          //                 itemCount: snapshot.data.data.length,
+          //                 itemBuilder: (context, index) {
+          //                   return Container(
+          //                     width: 100.0,
+          //                     color: Colors.transparent,
+          //                     child: Column(
+          //                       crossAxisAlignment: CrossAxisAlignment.center,
+          //                       mainAxisAlignment:
+          //                           MainAxisAlignment.spaceEvenly,
+          //                       children: <Widget>[
+          //                         CircleAvatar(
+          //                           radius: 25,
+          //                           backgroundColor:
+          //                               Theme.of(context).primaryColor,
+          //                           child: CircleAvatar(
+          //                             backgroundImage: AssetImage(
+          //                                 'assets/default_avatar.png'),
+          //                             radius: 22,
+          //                           ),
+          //                         ),
+          //                         Text(
+          //                           snapshot.data.data[index].firstName,
+          //                           style: TextStyle(
+          //                               fontWeight: FontWeight.bold,
+          //                               color: Colors.black),
+          //                         )
+          //                       ],
+          //                     ),
+          //                   );
+          //                 }),
+          //           ));
+          //     } else if (snapshot.hasError) {}
+          //     return SpinKitDoubleBounce(
+          //       color: Theme.of(context).primaryColor,
+          //     );
+          //   },
+          // ),
           Positioned(
             bottom: 5,
             left: 0,

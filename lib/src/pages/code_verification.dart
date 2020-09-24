@@ -174,6 +174,9 @@ class _CodeVerificationState extends State<CodeVerification> {
         widget.prefs.setBool('loggedIn', true);
         // save token
         widget.prefs.setString('jwt_token', rsp['token']);
+        SharedPreferences kubika = await SharedPreferences.getInstance();
+        kubika.setString('token', rsp['token']);
+        kubika.setBool('loggedIn', true);
 
         Navigator.pushAndRemoveUntil(
           context,
@@ -198,7 +201,7 @@ class _CodeVerificationState extends State<CodeVerification> {
           _scaffoldKey.currentState.showSnackBar(
             new SnackBar(
               content: Text(
-                'Oops! something unexpected happened',
+                'Oops! something unexpected happened!',
                 style: TextStyle(color: Colors.red),
               ),
               duration: Duration(seconds: 3),

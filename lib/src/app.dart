@@ -9,6 +9,7 @@ import 'package:shuriapp/src/pages/sign_up.dart';
 import 'package:shuriapp/src/rx/current_student.dart';
 import 'package:shuriapp/src/screens/home_screen.dart';
 import 'package:shuriapp/src/screens/settings_screen.dart';
+import 'package:shuriapp/src/widgets/moredetails.dart';
 
 class App extends StatelessWidget {
   // This widget is the root of your application.
@@ -31,13 +32,14 @@ class App extends StatelessWidget {
         debugShowCheckedModeBanner: false,
         title: 'shuriapp',
         theme: ThemeData(
-            primaryColor: Color(0xFFFAB72A), accentColor: Colors.orangeAccent),
+            primaryColor: Color(0xFF7B68EE), accentColor: Colors.orangeAccent),
         home: _handleCurrentScreen(),
         routes: <String, WidgetBuilder>{
           '/home': (BuildContext context) => HomePage(),
           '/settings': (BuildContext context) => SettingsScreen(),
           '/payment': (BuildContext context) => PaymentPage(),
           '/homescreen': (BuildContext context) => HomeScreen(),
+          '/moredetails': (BuildContext context) => Moredetails(),
         },
       ),
     );

@@ -5,6 +5,8 @@ import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:shuriapp/src/models/student_list.dart';
 import 'package:shuriapp/src/services/authentication_service.dart';
+import 'package:flutter_icons/flutter_icons.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class HomeScreen extends StatefulWidget {
   @override
@@ -68,7 +70,7 @@ class _HomeScreenState extends State<HomeScreen> {
                           children: <Widget>[
                             CircleAvatar(
                               radius: 25,
-                              backgroundColor: Theme.of(context).primaryColor,
+                              backgroundColor: Color(0xFF7B68EE),
                               child: CircleAvatar(
                                 backgroundImage:
                                     AssetImage('assets/default_avatar.png'),
@@ -140,80 +142,174 @@ class _HomeScreenState extends State<HomeScreen> {
             bottom: 5,
             left: 0,
             right: 0,
-            child: Card(
-              child: Padding(
-                padding: EdgeInsets.all(8),
-                child: Column(
-                  children: <Widget>[
-                    IntrinsicHeight(
-                      child: Row(
-                        mainAxisSize: MainAxisSize.max,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                        children: <Widget>[
-                          Text(
-                            'Bruce ',
-                            style: TextStyle(
-                                color: Theme.of(context).primaryColor,
-                                fontWeight: FontWeight.bold),
+            child: Container(
+              padding: EdgeInsets.fromLTRB(5.0, 0.0, 0.0, 10.0),
+              child: Card(
+                elevation: 6.0,
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(15)),
+                child: Padding(
+                  padding: EdgeInsets.all(2),
+                  child: Column(
+                    children: <Widget>[
+                      Center(
+                        child: Container(
+                          padding: EdgeInsets.symmetric(
+                              vertical: 10.0, horizontal: 20.0),
+                          child: Row(
+                            children: [
+                              Icon(
+                                FontAwesome.graduation_cap,
+                                color: Color(0xFF7B68EE),
+                                size: 20.0,
+                              ),
+                              SizedBox(
+                                width: 10.0,
+                              ),
+                              Text(
+                                'Student Name',
+                                style: GoogleFonts.fredokaOne(
+                                    textStyle: TextStyle(fontSize: 14.0)),
+                              )
+                            ],
                           ),
-                          VerticalDivider(
-                            thickness: 1,
-                          ),
-                          Text('OnBoarding')
-                        ],
+                        ),
                       ),
-                    ),
-                    Divider(),
-                    Row(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      children: <Widget>[
-                        Column(
+                      Divider(
+                        height: 1.0,
+                      ),
+                      SizedBox(
+                        height: 4.0,
+                      ),
+                      IntrinsicHeight(
+                        child: Row(
+                          mainAxisSize: MainAxisSize.max,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                           children: <Widget>[
-                            Text('bus plate'),
-                            SizedBox(
-                              height: 8,
+                            Center(
+                              child: Container(
+                                padding: EdgeInsets.symmetric(vertical: 10.0),
+                                child: Row(
+                                  children: [
+                                    Icon(
+                                      FontAwesome.user_circle_o,
+                                      color: Color(0xFF7B68EE),
+                                      size: 20.0,
+                                    ),
+                                    SizedBox(
+                                      width: 4.0,
+                                    ),
+                                    Text(
+                                      'Bruce Rindiro',
+                                      style: GoogleFonts.rubik(
+                                          textStyle: TextStyle(fontSize: 14.0)),
+                                    )
+                                  ],
+                                ),
+                              ),
                             ),
-                            Text(
-                              'RAA 234P',
-                              style: TextStyle(
-                                  color: Colors.black,
-                                  fontWeight: FontWeight.bold),
+                            VerticalDivider(
+                              thickness: 1,
+                            ),
+                            Container(
+                              child: Card(
+                                color: Colors.yellowAccent,
+                                shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(20)),
+                                child: Container(
+                                  padding: EdgeInsets.symmetric(
+                                      vertical: 4.0, horizontal: 5.0),
+                                  child: Text('OnBoarding'),
+                                ),
+                              ),
+                            )
+                          ],
+                        ),
+                      ),
+                      SizedBox(
+                        height: 10.0,
+                      ),
+                      Container(
+                        padding: EdgeInsets.all(15.0),
+                        child: Row(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          children: <Widget>[
+                            Column(
+                              children: <Widget>[
+                                Container(
+                                    child: Row(
+                                  children: [
+                                    Icon(
+                                      FontAwesome.bus,
+                                      color: Color(0xFF7B68EE),
+                                      size: 20.0,
+                                    ),
+                                    SizedBox(
+                                      width: 6.0,
+                                    ),
+                                    Text(
+                                      'RAA 234P',
+                                      style: TextStyle(
+                                          color: Colors.black,
+                                          fontWeight: FontWeight.bold),
+                                    ),
+                                  ],
+                                ))
+                              ],
+                            ),
+                            Column(
+                              children: <Widget>[
+                                Container(
+                                    child: Row(
+                                  children: [
+                                    Icon(
+                                      FontAwesome.street_view,
+                                      color: Color(0xFF7B68EE),
+                                      size: 20.0,
+                                    ),
+                                    SizedBox(
+                                      width: 4.0,
+                                    ),
+                                    Text(
+                                      '10 Km',
+                                      style: TextStyle(
+                                          color: Colors.black,
+                                          fontWeight: FontWeight.bold),
+                                    ),
+                                  ],
+                                ))
+                              ],
+                            ),
+                            Column(
+                              children: <Widget>[
+                                Container(
+                                    child: Row(
+                                  children: [
+                                    Icon(
+                                      MaterialCommunityIcons.alarm,
+                                      color: Color(0xFF7B68EE),
+                                      size: 20.0,
+                                    ),
+                                    SizedBox(
+                                      width: 4.0,
+                                    ),
+                                    Text(
+                                      '20 min',
+                                      style: TextStyle(
+                                          color: Colors.black,
+                                          fontWeight: FontWeight.bold),
+                                    ),
+                                  ],
+                                ))
+                              ],
                             ),
                           ],
                         ),
-                        Column(
-                          children: <Widget>[
-                            Text('Distance'),
-                            SizedBox(
-                              height: 8,
-                            ),
-                            Text(
-                              'Distance',
-                              style: TextStyle(
-                                  color: Colors.black,
-                                  fontWeight: FontWeight.bold),
-                            ),
-                          ],
-                        ),
-                        Column(
-                          children: <Widget>[
-                            Text('Time'),
-                            SizedBox(
-                              height: 8,
-                            ),
-                            Text(
-                              'Time',
-                              style: TextStyle(
-                                  color: Colors.black,
-                                  fontWeight: FontWeight.bold),
-                            ),
-                          ],
-                        )
-                      ],
-                    )
-                  ],
+                      )
+                    ],
+                  ),
                 ),
               ),
             ),

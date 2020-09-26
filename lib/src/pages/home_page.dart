@@ -5,6 +5,7 @@ import 'package:shuriapp/src/screens/announcement_screen.dart';
 import 'package:shuriapp/src/screens/home_screen.dart';
 import 'package:shuriapp/src/screens/profile_screen.dart';
 import 'package:shuriapp/src/screens/alert_screen.dart';
+import 'package:flutter_icons/flutter_icons.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -50,7 +51,7 @@ class _HomePageState extends State<HomePage> {
                     text: 'Release',
                   ),
                   GButton(
-                    icon: LineIcons.bell_o,
+                    icon: Feather.alert_circle,
                     text: 'Alert',
                   ),
                   GButton(

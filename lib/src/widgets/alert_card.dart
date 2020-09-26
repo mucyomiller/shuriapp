@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:shuriapp/src/widgets/routes.dart';
 
-class AnnouncementCard extends StatelessWidget {
+class AlertCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Card(
@@ -26,6 +25,10 @@ class AnnouncementCard extends StatelessWidget {
                     ),
                     SizedBox(
                       height: 8,
+                    ),
+                    Text(
+                      '2018-02-23 07:13:19',
+                      style: TextStyle(color: Colors.black54),
                     )
                   ],
                 )
@@ -38,23 +41,16 @@ class AnnouncementCard extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
                 Text(
-                  'Topic',
+                  'MEETTING 2018',
                   style: TextStyle(
                       color: Colors.black, fontWeight: FontWeight.bold),
                 ),
                 SizedBox(
                   height: 8,
                 ),
-                InkWell(
-                  child: Text(
-                    'How do parents contribute to the development of school',
-                    style: TextStyle(color: Colors.black54),
-                  ),
-                  onTap: () {
-                    Navigator.of(context).pushNamed('/moredetails',
-                        arguments:
-                            'How do parents contribute to the development of school');
-                  },
+                Text(
+                  'Hey my Name is MUHOZA yves  New HeadMaster of Green Hills',
+                  style: TextStyle(color: Colors.black54),
                 )
               ],
             )

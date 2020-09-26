@@ -37,6 +37,8 @@ dependencies:
   google_maps_flutter: ^0.5.28+1
   flutter_polyline_points: ^0.2.1
   settings_ui: ^0.3.0
+  google_fonts: ^1.1.0
+  flutter_icons: ^1.1.0
 
 dev_dependencies:
   flutter_test:

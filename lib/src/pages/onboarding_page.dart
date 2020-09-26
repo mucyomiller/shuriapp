@@ -26,7 +26,7 @@ class _OnBoardingPageState extends State<OnBoardingPage> {
 
   Widget _buildImage(String assetName) {
     return Align(
-      child: Image.asset('assets/$assetName.jpg', width: 350.0),
+      child: Image.asset('assets/$assetName.png', width: 350.0),
       alignment: Alignment.bottomCenter,
     );
   }
@@ -49,20 +49,20 @@ class _OnBoardingPageState extends State<OnBoardingPage> {
           title: "Shuri app",
           body:
               "Instead of waiting know when bus is coming to pick you, before time.",
-          image: _buildImage('img1'),
+          image: _buildImage('vanpool'),
           decoration: pageDecoration,
         ),
         PageViewModel(
           title: "Reminder",
           body: "Get instant notification about your journey.",
-          image: _buildImage('img2'),
+          image: _buildImage('mobile'),
           decoration: pageDecoration,
         ),
         PageViewModel(
           title: "Students or Parent",
           body:
               "Student or Parent can track bus  and get notification from schools.",
-          image: _buildImage('img3'),
+          image: _buildImage('coins'),
           decoration: pageDecoration,
         ),
         PageViewModel(
@@ -73,7 +73,7 @@ class _OnBoardingPageState extends State<OnBoardingPage> {
               Text("Click Done and Start!", style: bodyStyle),
             ],
           ),
-          image: _buildImage('img1'),
+          image: _buildImage('vanpool'),
           decoration: pageDecoration,
         ),
       ],

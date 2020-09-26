@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_icons/flutter_icons.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:shuriapp/src/pages/sign_up.dart';
 
 class ProfileScreen extends StatefulWidget {
   @override
@@ -30,6 +33,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
   Widget build(BuildContext context) {
     return new Scaffold(
         appBar: AppBar(
+          backgroundColor: Color(0xFF7B68EE),
           title: Text(
             'Profile',
             style: TextStyle(color: Colors.white),
@@ -50,13 +54,13 @@ class _ProfileScreenState extends State<ProfileScreen> {
             ),
           ],
         ),
-        floatingActionButton: FloatingActionButton(
-            backgroundColor: Theme.of(context).primaryColor,
-            child: Icon(
-              Icons.edit,
-              color: Colors.white,
-            ),
-            onPressed: () {}),
+        // floatingActionButton: FloatingActionButton(
+        //     backgroundColor: Color(0xFF7B68EE),
+        //     child: Icon(
+        //       Icons.edit,
+        //       color: Colors.white,
+        //     ),
+        //     onPressed: () {}),
         body: Container(
           child: SingleChildScrollView(
             child: Column(
@@ -81,19 +85,23 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   ),
                 ),
                 SizedBox(height: 15.0),
-                Text(
-                  'John Doe',
-                  style: TextStyle(
-                      fontSize: 30.0,
-                      fontWeight: FontWeight.bold,
-                      fontFamily: 'Montserrat'),
-                ),
+                Text('John Doe',
+                    style: GoogleFonts.fredokaOne(
+                        textStyle: TextStyle(fontSize: 30.0))),
                 SizedBox(height: 15.0),
                 ListView(
                   shrinkWrap: true,
                   children: ListTile.divideTiles(
                     context: context,
                     tiles: [
+                      ListTile(
+                        leading: Icon(MaterialCommunityIcons.school,
+                            color: Theme.of(context).primaryColor),
+                        title: Text('School name',
+                            style: GoogleFonts.fredokaOne(
+                                textStyle: TextStyle(fontSize: 20.0))),
+                        subtitle: Text('Kagarama high school'),
+                      ),
                       ListTile(
                         leading: Icon(Icons.phone_in_talk,
                             color: Theme.of(context).primaryColor),
@@ -103,7 +111,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                               fontWeight: FontWeight.bold,
                               decoration: TextDecoration.underline),
                         ),
-                        subtitle: Text('Tel. Number'),
+                        subtitle: Text('Parent Phone'),
                       ),
                       ListTile(
                         leading: Icon(Icons.email,
@@ -114,12 +122,38 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       ListTile(
                         leading: Icon(Icons.location_on,
                             color: Theme.of(context).primaryColor),
-                        title: Text('Rindiro Bruce'),
-                        subtitle: Text('Location'),
+                        title: Text('Bus stop'),
+                        subtitle: Text('ALU business school, Kigali, Rwanda'),
                       ),
+                      SizedBox(
+                        height: 10.0,
+                      ),
+                      InkWell(
+                        child: Container(
+                          padding: EdgeInsets.all(12.0),
+                          child: Row(
+                            children: [
+                              Icon(
+                                MaterialCommunityIcons.logout,
+                                color: Color(0xFF7B68EE),
+                              ),
+                              Text(
+                                'Logout',
+                                style: GoogleFonts.fredokaOne(
+                                    textStyle: TextStyle(fontSize: 14.0)),
+                              )
+                            ],
+                          ),
+                        ),
+                        onTap: () {
+                          Navigator.of(context).push(
+                            MaterialPageRoute(builder: (_) => SignUp()),
+                          );
+                        },
+                      )
                     ],
                   ).toList(),
-                )
+                ),
               ],
             ),
           ),

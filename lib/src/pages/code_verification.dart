@@ -6,6 +6,7 @@ import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:shuriapp/src/pages/home_page.dart';
 import 'package:shuriapp/src/services/authentication_service.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class CodeVerification extends StatefulWidget {
   final SharedPreferences prefs;
@@ -47,11 +48,17 @@ class _CodeVerificationState extends State<CodeVerification> {
               crossAxisAlignment: CrossAxisAlignment.center,
               mainAxisSize: MainAxisSize.max,
               children: [
+                SizedBox(
+                  height: 30.0,
+                ),
                 Center(
                   child: Image.asset(
-                    'assets/white_logo.webp',
+                    'assets/on_time.png',
                     width: MediaQuery.of(context).size.width * 0.4,
                   ),
+                ),
+                SizedBox(
+                  height: 20.0,
                 ),
                 Container(
                   margin: EdgeInsets.only(
@@ -62,7 +69,9 @@ class _CodeVerificationState extends State<CodeVerification> {
                       textAlign: TextAlign.center,
                       overflow: TextOverflow.visible,
                       text: TextSpan(
-                          style: TextStyle(fontSize: 18.0, color: Colors.black),
+                          style: GoogleFonts.lato(
+                              textStyle: TextStyle(
+                                  fontSize: 18.0, color: Colors.black)),
                           children: <TextSpan>[
                             TextSpan(
                                 text:
@@ -108,7 +117,7 @@ class _CodeVerificationState extends State<CodeVerification> {
                         ),
                       ),
                       padding: EdgeInsets.symmetric(vertical: 10.0),
-                      color: Color(0xFFF5CA19),
+                      color: Color(0xFF7B68EE),
                       onPressed: () {
                         if (!isLoading) {
                           setState(() {

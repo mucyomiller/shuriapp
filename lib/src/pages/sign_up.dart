@@ -8,6 +8,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:shuriapp/src/pages/code_verification.dart';
 import 'package:shuriapp/src/pages/home_page.dart';
 import 'package:shuriapp/src/services/authentication_service.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class SignUp extends StatefulWidget {
   final SharedPreferences prefs;
@@ -45,176 +46,193 @@ class _SignUpState extends State<SignUp> {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: <Widget>[
-                      Center(
-                        child: Image.asset(
-                          'assets/white_logo.webp',
-                          width: MediaQuery.of(context).size.width * 0.50,
+                      SizedBox(
+                        height: 30.0,
+                      ),
+                      Container(
+                        padding: EdgeInsets.all(10.0),
+                        child: Center(
+                          child: Image.asset(
+                            'assets/on_time.png',
+                            width: MediaQuery.of(context).size.width * 0.50,
+                          ),
                         ),
                       ),
+                      SizedBox(height: 20.0),
                       Container(
                         padding: EdgeInsets.symmetric(horizontal: 35.0),
                         child: Form(
                           key: _formState,
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            mainAxisSize: MainAxisSize.min,
-                            children: <Widget>[
-                              Text(
-                                "Get started,",
-                                style: TextStyle(
-                                  fontWeight: FontWeight.w600,
-                                  fontSize: 18.0,
+                          child: Center(
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              mainAxisSize: MainAxisSize.min,
+                              children: <Widget>[
+                                Center(
+                                  child: Text("Get started,",
+                                      style: GoogleFonts.lato(
+                                          textStyle: TextStyle(
+                                              fontSize: 16,
+                                              fontWeight: FontWeight.bold))),
                                 ),
-                              ),
-                              Text(
-                                "Sign In to continue",
-                                style: TextStyle(
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 18.0,
-                                  color: Colors.black.withOpacity(0.4),
-                                ),
-                              ),
-                              Padding(
-                                padding: EdgeInsets.only(
-                                  left: 1.0,
-                                  right: 1.0,
-                                  top: 20.0,
-                                ),
-                                child: Text(
-                                  "Phone Number",
-                                  textAlign: TextAlign.left,
-                                  style: Theme.of(context).textTheme.bodyText1,
-                                ),
-                              ),
-                              Card(
-                                elevation: 0.0,
-                                margin: EdgeInsets.only(top: 10.0),
-                                shape: RoundedRectangleBorder(
-                                    side: BorderSide(
-                                      color: Colors.black.withOpacity(0.15),
-                                      width: 1.0,
-                                    ),
-                                    borderRadius:
-                                        BorderRadius.all(Radius.circular(5.0))),
-                                child: Padding(
-                                  padding: EdgeInsets.symmetric(
-                                      horizontal: 10.0, vertical: 0.0),
-                                  child: Row(
-                                    mainAxisSize: MainAxisSize.max,
-                                    children: [
-                                      CountryCodePicker(
-                                        onChanged: print,
-                                        initialSelection: 'RW',
-                                        // optional. Shows only country name and flag
-                                        showFlagDialog: true,
-                                        // optional. Shows only country name and flag when popup is closed.
-                                        showOnlyCountryWhenClosed: false,
-                                        // optional. aligns the flag and the Text left
-                                        alignLeft: false,
+                                Center(
+                                  child: Text("Sign In to continue",
+                                      style: GoogleFonts.lato(
                                         textStyle: TextStyle(
-                                            fontWeight: FontWeight.bold),
+                                          fontWeight: FontWeight.bold,
+                                          fontSize: 18.0,
+                                          color: Colors.black.withOpacity(0.4),
+                                        ),
+                                      )),
+                                ),
+                                Padding(
+                                  padding: EdgeInsets.only(
+                                    left: 1.0,
+                                    right: 1.0,
+                                    top: 20.0,
+                                  ),
+                                  child: Text(
+                                    "Phone Number",
+                                    textAlign: TextAlign.left,
+                                    style:
+                                        Theme.of(context).textTheme.bodyText1,
+                                  ),
+                                ),
+                                Card(
+                                  elevation: 0.0,
+                                  margin: EdgeInsets.only(top: 10.0),
+                                  shape: RoundedRectangleBorder(
+                                      side: BorderSide(
+                                        color: Colors.black.withOpacity(0.15),
+                                        width: 1.0,
                                       ),
-                                      Expanded(
-                                        child: Padding(
-                                          padding:
-                                              const EdgeInsets.only(left: 4.0),
-                                          child: TextFormField(
-                                            controller:
-                                                _phoneTextEditController,
-                                            keyboardType: TextInputType.number,
-                                            style: TextStyle(
-                                                fontWeight: FontWeight.bold),
-                                            textInputAction:
-                                                TextInputAction.done,
-                                            validator: (v) => v.isEmpty
-                                                ? 'Phone number is required'
-                                                : null,
-                                            decoration: InputDecoration(
-                                              enabledBorder:
-                                                  UnderlineInputBorder(
-                                                      borderSide: BorderSide(
-                                                          style: BorderStyle
-                                                              .none)),
-                                              border: UnderlineInputBorder(
-                                                  borderSide: BorderSide(
-                                                      style: BorderStyle.none)),
-                                              disabledBorder:
-                                                  UnderlineInputBorder(
-                                                      borderSide: BorderSide(
-                                                          style: BorderStyle
-                                                              .none)),
-                                              errorBorder: UnderlineInputBorder(
-                                                  borderSide: BorderSide(
-                                                      style: BorderStyle.none)),
-                                              focusedBorder:
-                                                  UnderlineInputBorder(
-                                                      borderSide: BorderSide(
-                                                          style: BorderStyle
-                                                              .none)),
-                                              focusedErrorBorder:
-                                                  UnderlineInputBorder(
-                                                      borderSide: BorderSide(
-                                                          style: BorderStyle
-                                                              .none)),
-                                            ),
-                                            inputFormatters: [
-                                              new BlacklistingTextInputFormatter(
-                                                new RegExp('[\\.|\\,|\\-|\\ ]'),
+                                      borderRadius: BorderRadius.all(
+                                          Radius.circular(5.0))),
+                                  child: Padding(
+                                    padding: EdgeInsets.symmetric(
+                                        horizontal: 10.0, vertical: 0.0),
+                                    child: Row(
+                                      mainAxisSize: MainAxisSize.max,
+                                      children: [
+                                        CountryCodePicker(
+                                          onChanged: print,
+                                          initialSelection: 'RW',
+                                          // optional. Shows only country name and flag
+                                          showFlagDialog: true,
+                                          // optional. Shows only country name and flag when popup is closed.
+                                          showOnlyCountryWhenClosed: false,
+                                          // optional. aligns the flag and the Text left
+                                          alignLeft: false,
+                                          textStyle: TextStyle(
+                                              fontWeight: FontWeight.bold),
+                                        ),
+                                        Expanded(
+                                          child: Padding(
+                                            padding: const EdgeInsets.only(
+                                                left: 4.0),
+                                            child: TextFormField(
+                                              controller:
+                                                  _phoneTextEditController,
+                                              keyboardType:
+                                                  TextInputType.number,
+                                              style: TextStyle(
+                                                  fontWeight: FontWeight.bold),
+                                              textInputAction:
+                                                  TextInputAction.done,
+                                              validator: (v) => v.isEmpty
+                                                  ? 'Phone number is required'
+                                                  : null,
+                                              decoration: InputDecoration(
+                                                enabledBorder:
+                                                    UnderlineInputBorder(
+                                                        borderSide: BorderSide(
+                                                            style: BorderStyle
+                                                                .none)),
+                                                border: UnderlineInputBorder(
+                                                    borderSide: BorderSide(
+                                                        style:
+                                                            BorderStyle.none)),
+                                                disabledBorder:
+                                                    UnderlineInputBorder(
+                                                        borderSide: BorderSide(
+                                                            style: BorderStyle
+                                                                .none)),
+                                                errorBorder:
+                                                    UnderlineInputBorder(
+                                                        borderSide: BorderSide(
+                                                            style: BorderStyle
+                                                                .none)),
+                                                focusedBorder:
+                                                    UnderlineInputBorder(
+                                                        borderSide: BorderSide(
+                                                            style: BorderStyle
+                                                                .none)),
+                                                focusedErrorBorder:
+                                                    UnderlineInputBorder(
+                                                        borderSide: BorderSide(
+                                                            style: BorderStyle
+                                                                .none)),
                                               ),
-                                            ],
+                                              inputFormatters: [
+                                                new BlacklistingTextInputFormatter(
+                                                  new RegExp(
+                                                      '[\\.|\\,|\\-|\\ ]'),
+                                                ),
+                                              ],
+                                            ),
                                           ),
                                         ),
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                              ),
-                              Container(
-                                margin: EdgeInsets.symmetric(vertical: 25.0),
-                                child: ButtonTheme(
-                                  minWidth: MediaQuery.of(context).size.width,
-                                  child: RaisedButton(
-                                    elevation: 0.0,
-                                    shape: RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.all(
-                                        Radius.circular(5.0),
-                                      ),
+                                      ],
                                     ),
-                                    padding:
-                                        EdgeInsets.symmetric(vertical: 10.0),
-                                    color: Color(0xFF7B68EE),
-                                    onPressed: () {
-                                      if (!isLoading) {
-                                        setState(() {
-                                          isLoading = true;
-                                        });
-                                        _sendVerificationCode(context);
-                                        // Navigator.pushAndRemoveUntil(
-                                        //   context,
-                                        //   MaterialPageRoute(
-                                        //     builder: (context) => HomePage(),
-                                        //   ),
-                                        //   ModalRoute.withName("/homepage"),
-                                        // );
-                                      }
-                                    },
-                                    child: !isLoading
-                                        ? Text(
-                                            'Next',
-                                            style: TextStyle(
-                                              color: Colors.white,
-                                              fontSize: 18.0,
-                                            ),
-                                          )
-                                        : SpinKitThreeBounce(
-                                            color: Colors.white,
-                                            size: 15.0,
-                                          ),
                                   ),
                                 ),
-                              ),
-                            ],
+                                Container(
+                                  margin: EdgeInsets.symmetric(vertical: 25.0),
+                                  child: ButtonTheme(
+                                    minWidth: MediaQuery.of(context).size.width,
+                                    child: RaisedButton(
+                                      elevation: 0.0,
+                                      shape: RoundedRectangleBorder(
+                                        borderRadius: BorderRadius.all(
+                                          Radius.circular(5.0),
+                                        ),
+                                      ),
+                                      padding:
+                                          EdgeInsets.symmetric(vertical: 10.0),
+                                      color: Color(0xFF7B68EE),
+                                      onPressed: () {
+                                        if (!isLoading) {
+                                          setState(() {
+                                            isLoading = true;
+                                          });
+                                          // _sendVerificationCode(context);
+                                          Navigator.pushAndRemoveUntil(
+                                            context,
+                                            MaterialPageRoute(
+                                              builder: (context) => HomePage(),
+                                            ),
+                                            ModalRoute.withName("/homepage"),
+                                          );
+                                        }
+                                      },
+                                      child: !isLoading
+                                          ? Text(
+                                              'Next',
+                                              style: TextStyle(
+                                                color: Colors.white,
+                                                fontSize: 18.0,
+                                              ),
+                                            )
+                                          : SpinKitThreeBounce(
+                                              color: Colors.white,
+                                              size: 15.0,
+                                            ),
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
                           ),
                         ),
                       ),

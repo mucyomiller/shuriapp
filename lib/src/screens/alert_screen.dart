@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:shuriapp/src/widgets/announcement_card.dart';
+import 'package:shuriapp/src/widgets/alert_card.dart';
 
 class AlertScreen extends StatelessWidget {
   @override
@@ -7,17 +8,17 @@ class AlertScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          'Announcements',
+          'Notifications',
           style: TextStyle(color: Colors.white),
         ),
       ),
       body: Container(
         child: ListView(
           children: <Widget>[
-            AnnouncementCard(),
-            AnnouncementCard(),
-            AnnouncementCard(),
-            AnnouncementCard(),
+            AlertCard(),
+            AlertCard(),
+            AlertCard(),
+            AlertCard(),
           ],
         ),
       ),

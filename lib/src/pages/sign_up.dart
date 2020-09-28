@@ -47,7 +47,7 @@ class _SignUpState extends State<SignUp> {
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: <Widget>[
                       SizedBox(
-                        height: 30.0,
+                        height: 60.0,
                       ),
                       Container(
                         padding: EdgeInsets.all(10.0),

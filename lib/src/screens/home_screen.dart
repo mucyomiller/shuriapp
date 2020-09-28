@@ -7,6 +7,10 @@ import 'package:shuriapp/src/models/student_list.dart';
 import 'package:shuriapp/src/services/authentication_service.dart';
 import 'package:flutter_icons/flutter_icons.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:shuriapp/src/pages/sign_up.dart';
+import 'package:shuriapp/src/screens/profile_screen.dart';
+import 'package:shuriapp/src/screens/announcement_screen.dart';
+import 'package:shuriapp/src/screens/alert_screen.dart';
 
 class HomeScreen extends StatefulWidget {
   @override
@@ -36,13 +40,110 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        title: Text(
+          'Shuri App',
+          style: TextStyle(color: Color(0xffffffaa)),
+        ),
+        backgroundColor: Color(0xFF7B68EE),
+        elevation: 0.0,
+      ),
+      drawer: Container(
+        width: 200,
+        child: Drawer(
+          // Add a ListView to the drawer. This ensures the user can scroll
+          // through the options in the drawer if there isn't enough vertical
+          // space to fit everything.
+          child: ListView(
+            padding: EdgeInsets.zero,
+            children: <Widget>[
+              DrawerHeader(
+                child: Container(
+                    padding: EdgeInsets.all(20.0),
+                    width: 30.0,
+                    height: 30.0,
+                    decoration: BoxDecoration(
+                        color: Colors.white,
+                        image: DecorationImage(
+                            image: AssetImage("assets/on_time.png"),
+                            fit: BoxFit.cover),
+                        borderRadius: BorderRadius.all(Radius.circular(90.0)),
+                        boxShadow: [
+                          BoxShadow(blurRadius: 1.0, color: Colors.black)
+                        ])),
+                decoration: BoxDecoration(
+                  color: Color(0xFF7B68EE),
+                ),
+              ),
+              ListTile(
+                leading: Icon(FontAwesome.user_circle_o,
+                    color: Theme.of(context).primaryColor),
+                title: Text('Profile',
+                    style: GoogleFonts.fredokaOne(
+                        textStyle: TextStyle(fontSize: 14.0))),
+                onTap: () {
+                  Navigator.of(context).push(
+                    MaterialPageRoute(builder: (_) => ProfileScreen()),
+                  );
+                },
+              ),
+              ListTile(
+                leading: Icon(MaterialCommunityIcons.alert_circle_outline,
+                    color: Theme.of(context).primaryColor),
+                title: Text('Announcement',
+                    style: GoogleFonts.fredokaOne(
+                        textStyle: TextStyle(fontSize: 14.0))),
+                onTap: () {
+                  Navigator.of(context).push(
+                    MaterialPageRoute(builder: (_) => AnnouncementScreen()),
+                  );
+                },
+              ),
+              ListTile(
+                leading: Icon(MaterialCommunityIcons.alert_circle,
+                    color: Theme.of(context).primaryColor),
+                title: Text('Notification',
+                    style: GoogleFonts.fredokaOne(
+                        textStyle: TextStyle(fontSize: 14.0))),
+                onTap: () {
+                  Navigator.of(context).push(
+                    MaterialPageRoute(builder: (_) => AlertScreen()),
+                  );
+                },
+              ),
+              ListTile(
+                leading: Icon(FontAwesome.money,
+                    color: Theme.of(context).primaryColor),
+                title: Text('Payment',
+                    style: GoogleFonts.fredokaOne(
+                        textStyle: TextStyle(fontSize: 14.0))),
+                onTap: () {
+                  Navigator.pushNamed(context, '/payment');
+                },
+              ),
+              ListTile(
+                leading: Icon(MaterialCommunityIcons.login_variant,
+                    color: Theme.of(context).primaryColor),
+                title: Text('Logout',
+                    style: GoogleFonts.fredokaOne(
+                        textStyle: TextStyle(fontSize: 14.0))),
+                onTap: () {
+                  Navigator.of(context).push(
+                    MaterialPageRoute(builder: (_) => SignUp()),
+                  );
+                },
+              ),
+            ],
+          ),
+        ),
+      ),
       body: SafeArea(
         child: Stack(children: <Widget>[
           GoogleMap(
             trafficEnabled: false,
             mapType: MapType.normal,
             myLocationEnabled: true,
-            zoomControlsEnabled: false,
+            zoomControlsEnabled: true,
             myLocationButtonEnabled: true,
             onMapCreated: _onMapCreated,
             initialCameraPosition: CameraPosition(

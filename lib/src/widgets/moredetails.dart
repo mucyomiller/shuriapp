@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-
+import 'package:flutter_icons/flutter_icons.dart';
 class Moredetails extends StatelessWidget {
   final String data;
   Moredetails({Key key, @required this.data}) : super(key: key);
@@ -24,11 +24,7 @@ class Moredetails extends StatelessWidget {
                     ),
                     Column(
                       children: <Widget>[
-                        Text(
-                          'Horizon Primary School',
-                          style: TextStyle(
-                              color: Colors.black, fontWeight: FontWeight.bold),
-                        ),
+                       
                         SizedBox(
                           height: 8,
                         )
@@ -36,9 +32,7 @@ class Moredetails extends StatelessWidget {
                     )
                   ],
                 ),
-                Divider(
-                  color: Colors.grey,
-                ),
+                
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
@@ -47,22 +41,38 @@ class Moredetails extends StatelessWidget {
                       style: TextStyle(
                           color: Colors.black, fontWeight: FontWeight.bold),
                     ),
+                    Divider(
+                  color: Colors.grey,
+                ),
+
+                Text('Welcome to ----------------------'),
                     SizedBox(
-                      height: 8,
+                      height: 12.0,
                     ),
-                    InkWell(
-                      child: Text(
-                        'dffgfg',
-                        style: TextStyle(color: Colors.black54),
-                      ),
-                      onTap: () {
-                        Navigator.of(context).pushNamed('/homepage',
-                            arguments:
-                                'How do parents contribute to the development of school');
-                      },
-                    )
+                    
+                  
+                  ],
+                ),
+                SizedBox(height: 10.0,),
+                Column(
+                  children: [
+                  
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: [
+                      Expanded(flex:3,child: TextField(decoration: InputDecoration(
+                      labelText: "Enter message",
+                      border: OutlineInputBorder(),
+                      contentPadding: EdgeInsets.symmetric(
+                          vertical: 16.0, horizontal: 15.0),
+                    ),)),
+                    SizedBox(width: 8.0,),
+                      Expanded(flex:1,child: OutlineButton(onPressed: null,child: Container(padding:EdgeInsets.all(14.0) ,child: Icon(FontAwesome.reply_all,color:Color(0xFF7B68EE)),),))
+                    ],)
                   ],
                 )
+                
+
               ],
             ),
           ),

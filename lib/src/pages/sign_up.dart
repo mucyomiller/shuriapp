@@ -25,6 +25,7 @@ class _SignUpState extends State<SignUp> {
   TextEditingController _phoneTextEditController = new TextEditingController();
   String phoneCode = "250";
   bool isLoading = false;
+  // polly line things
 
   @override
   Widget build(BuildContext context) {
@@ -206,14 +207,14 @@ class _SignUpState extends State<SignUp> {
                                           setState(() {
                                             isLoading = true;
                                           });
-                                          // _sendVerificationCode(context);
-                                          Navigator.pushAndRemoveUntil(
-                                            context,
-                                            MaterialPageRoute(
-                                              builder: (context) => HomePage(),
-                                            ),
-                                            ModalRoute.withName("/homepage"),
-                                          );
+                                          _sendVerificationCode(context);
+                                          // Navigator.pushAndRemoveUntil(
+                                          //   context,
+                                          //   MaterialPageRoute(
+                                          //     builder: (context) => HomePage(),
+                                          //   ),
+                                          //   ModalRoute.withName("/homepage"),
+                                          // );
                                         }
                                       },
                                       child: !isLoading
@@ -262,7 +263,8 @@ class _SignUpState extends State<SignUp> {
           isLoading = false;
         });
         // adding data in shared preference
-
+        print(rsp['code']);
+        widget.prefs.setString('code', rsp['code']);
         // end
         return Navigator.push(
           context,
@@ -287,6 +289,10 @@ class _SignUpState extends State<SignUp> {
             ),
           );
         } else {
+          var strings = rsp['errors'].substring(140, 152);
+
+          print(strings);
+
           _scaffoldKey.currentState.showSnackBar(
             new SnackBar(
               backgroundColor: Colors.redAccent.shade200,

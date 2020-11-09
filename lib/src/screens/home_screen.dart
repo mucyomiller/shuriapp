@@ -11,6 +11,10 @@ import 'package:shuriapp/src/pages/sign_up.dart';
 import 'package:shuriapp/src/screens/profile_screen.dart';
 import 'package:shuriapp/src/screens/announcement_screen.dart';
 import 'package:shuriapp/src/screens/alert_screen.dart';
+import 'package:flutter_polyline_points/flutter_polyline_points.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'dart:convert';
+import 'package:http/http.dart' as http;
 
 class HomeScreen extends StatefulWidget {
   @override
@@ -18,10 +22,39 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+  Set<Polyline> lines = {};
   String _mapStyle;
   final LatLng _center = const LatLng(-1.967165, 30.103201);
   GoogleMapController mapController;
-  Future<StudentList> studentList;
+  // Future<StudentList> studentList;
+  Map<String, String> headers = {"Content-type": "application/json"};
+
+  List data = [];
+  int _index = 0;
+
+//select student
+  Future<Map> getData() async {
+    var prefs = await SharedPreferences.getInstance();
+    String token = prefs.getString('jwt_token');
+    headers['Authorization'] = 'Bearer ' + token;
+    final response = await http.get(
+        "https://api.shuribusapp.com/api/v1/guardians/students",
+        headers: headers);
+    var data = json.decode(response.body);
+
+    if (data['message'] == 'Success') {
+      print(data['data']);
+      this.setState(() {
+        data = data['data'];
+      });
+    } else {
+      throw Exception(response.toString());
+    }
+
+    // print(data);
+
+    return null;
+  }
 
   @override
   void initState() {
@@ -29,7 +62,9 @@ class _HomeScreenState extends State<HomeScreen> {
     rootBundle.loadString('assets/map_style.txt').then((string) {
       _mapStyle = string;
     });
-    studentList = getStudentList();
+    // studentList = getStudentList();
+    this.getData();
+    // poli
   }
 
   void _onMapCreated(GoogleMapController controller) {
@@ -42,7 +77,7 @@ class _HomeScreenState extends State<HomeScreen> {
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          'Shuri App',
+          'Ontime Parent App',
           style: TextStyle(color: Color(0xffffffaa)),
         ),
         backgroundColor: Color(0xFF7B68EE),
@@ -158,87 +193,22 @@ class _HomeScreenState extends State<HomeScreen> {
               child: Container(
                 color: Colors.white54,
                 height: MediaQuery.of(context).size.shortestSide * 0.25,
-                child: ListView.builder(
-                    scrollDirection: Axis.horizontal,
-                    itemCount: 7,
-                    itemBuilder: (context, index) {
-                      return Container(
-                        width: 100.0,
-                        color: Colors.transparent,
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                          children: <Widget>[
-                            CircleAvatar(
-                              radius: 25,
-                              backgroundColor: Color(0xFF7B68EE),
-                              child: CircleAvatar(
-                                backgroundImage:
-                                    AssetImage('assets/default_avatar.png'),
-                                radius: 22,
-                              ),
-                            ),
-                            Text(
-                              'Student 1',
-                              style: TextStyle(
-                                  fontWeight: FontWeight.bold,
-                                  color: Colors.black),
-                            )
-                          ],
-                        ),
-                      );
-                    }),
+                child: ListView(
+                  scrollDirection: Axis.horizontal,
+                  children: data
+                          .map((student) => _myStudents(
+                                student[0]["firstName"].toString(),
+                                student[0]["firstName"].toString(),
+                              ))
+                          .toList() ??
+                      [
+                        // SpinKitDoubleBounce(
+                        //   color: Theme.of(context).primaryColor,
+                        // ),
+                        // Text("Loading....")
+                      ],
+                ),
               )),
-          // FutureBuilder<StudentList>(
-          //   future: studentList,
-          //   builder: (context, snapshot) {
-          //     if (snapshot.hasData) {
-          //       return Positioned(
-          //           top: 0,
-          //           left: 0,
-          //           right: 0,
-          //           child: Container(
-          //             color: Colors.white54,
-          //             height: MediaQuery.of(context).size.shortestSide * 0.25,
-          //             child: ListView.builder(
-          //                 scrollDirection: Axis.horizontal,
-          //                 itemCount: snapshot.data.data.length,
-          //                 itemBuilder: (context, index) {
-          //                   return Container(
-          //                     width: 100.0,
-          //                     color: Colors.transparent,
-          //                     child: Column(
-          //                       crossAxisAlignment: CrossAxisAlignment.center,
-          //                       mainAxisAlignment:
-          //                           MainAxisAlignment.spaceEvenly,
-          //                       children: <Widget>[
-          //                         CircleAvatar(
-          //                           radius: 25,
-          //                           backgroundColor:
-          //                               Theme.of(context).primaryColor,
-          //                           child: CircleAvatar(
-          //                             backgroundImage: AssetImage(
-          //                                 'assets/default_avatar.png'),
-          //                             radius: 22,
-          //                           ),
-          //                         ),
-          //                         Text(
-          //                           snapshot.data.data[index].firstName,
-          //                           style: TextStyle(
-          //                               fontWeight: FontWeight.bold,
-          //                               color: Colors.black),
-          //                         )
-          //                       ],
-          //                     ),
-          //                   );
-          //                 }),
-          //           ));
-          //     } else if (snapshot.hasError) {}
-          //     return SpinKitDoubleBounce(
-          //       color: Theme.of(context).primaryColor,
-          //     );
-          //   },
-          // ),
           Positioned(
             bottom: 5,
             left: 0,
@@ -416,6 +386,31 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
           )
         ]),
+      ),
+    );
+  }
+
+  Widget _myStudents(String names, String image) {
+    return Container(
+      width: 100.0,
+      color: Colors.transparent,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.center,
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        children: <Widget>[
+          CircleAvatar(
+            radius: 25,
+            backgroundColor: Theme.of(context).primaryColor,
+            child: CircleAvatar(
+              backgroundImage: AssetImage('assets/default_avatar.png'),
+              radius: 22,
+            ),
+          ),
+          Text(
+            names,
+            style: TextStyle(fontWeight: FontWeight.bold, color: Colors.black),
+          )
+        ],
       ),
     );
   }

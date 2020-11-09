@@ -5,8 +5,8 @@ import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:shuriapp/src/models/student_list.dart';
 
-// const BASE_URL = 'https://api.shuribusapp.com/api/v1';
-const BASE_URL = 'http://shuriapi.herokuapp.com/api/v1';
+const BASE_URL = 'https://api.shuribusapp.com/api/v1';
+// const BASE_URL = 'http://shuriapi.herokuapp.com/api/';
 
 // getting token
 
@@ -20,11 +20,24 @@ Future<Map<String, dynamic>> studentVerifyNumber(
       body: json
           .encode({'resource': "Guardian", 'phoneNumber': driverPhoneNumber}));
   var authResponse = json.decode(response.body);
+  var message = authResponse['error'];
+  var successMessage = authResponse['data'];
+
+  print(successMessage['token']);
+
   if (kDebugMode) print('API response -> $authResponse');
   if (response.statusCode == 200) {
-    return {'status': 200, 'message': authResponse['message']};
+    return {
+      'status': 200,
+      'message': authResponse['message'],
+      'code': successMessage['token']
+    };
   }
-  return {'status': response.statusCode, 'message': authResponse['message']};
+  return {
+    'status': response.statusCode,
+    'errors': message['message'],
+    'message': authResponse['message']
+  };
 }
 
 Future<Map<String, dynamic>> studentValidateOTP(
@@ -63,7 +76,7 @@ Future<StudentList> getStudentList() async {
   headers['Authorization'] = 'Bearer ' + token;
   final response = await http.get(url, headers: headers);
   var data = json.decode(response.body);
-  if (kDebugMode) print('response -> $data');
+  // if (kDebugMode) print('response -> $data');
   if (response.statusCode == 200) {
     return StudentList.fromJson(data);
   } else {

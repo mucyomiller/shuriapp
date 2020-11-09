@@ -22,15 +22,29 @@ class CodeVerification extends StatefulWidget {
 
 class _CodeVerificationState extends State<CodeVerification> {
   GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
-  TextEditingController _codeTextEditingController =
-      new TextEditingController();
+
+  var userCode;
   String phoneNumber;
   bool isLoading = false; // btn loading
+  // getting code
+  void _getUserInfo() async {
+    SharedPreferences kubika = await SharedPreferences.getInstance();
+    var code = kubika.getString('code');
+    print(code);
+    setState(() {
+      userCode = code;
+    });
+  }
+
   @override
   void initState() {
     super.initState();
+
+    _getUserInfo();
     phoneNumber = widget.phoneNumber;
   }
+
+  TextEditingController _codeTextEditingController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -85,7 +99,8 @@ class _CodeVerificationState extends State<CodeVerification> {
                 ),
                 Container(
                   child: TextField(
-                    controller: _codeTextEditingController,
+                    controller: _codeTextEditingController
+                      ..text = userCode != null ? userCode : "",
                     autofocus: false,
                     keyboardType: TextInputType.number,
                     textInputAction: TextInputAction.done,
@@ -95,7 +110,7 @@ class _CodeVerificationState extends State<CodeVerification> {
                       contentPadding: EdgeInsets.symmetric(
                           vertical: 16.0, horizontal: 15.0),
                     ),
-                    onSubmitted: (v) {
+                    onTap: () {
                       _validateOTPcode(context);
                     },
                     inputFormatters: [
@@ -183,9 +198,6 @@ class _CodeVerificationState extends State<CodeVerification> {
         widget.prefs.setBool('loggedIn', true);
         // save token
         widget.prefs.setString('jwt_token', rsp['token']);
-        SharedPreferences kubika = await SharedPreferences.getInstance();
-        kubika.setString('token', rsp['token']);
-        kubika.setBool('loggedIn', true);
 
         Navigator.pushAndRemoveUntil(
           context,

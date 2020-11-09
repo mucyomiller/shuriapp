@@ -11,15 +11,31 @@ import 'package:shuriapp/src/screens/home_screen.dart';
 import 'package:shuriapp/src/screens/settings_screen.dart';
 import 'package:shuriapp/src/widgets/moredetails.dart';
 import 'package:shuriapp/src/widgets/routes.dart';
+import 'package:shuriapp/src/screens/splash_screens.dart';
+import 'dart:async';
 
-class App extends StatelessWidget {
+class App extends StatefulWidget {
   // This widget is the root of your application.
   final SharedPreferences prefs;
 
   App({this.prefs});
 
   @override
+  _AppState createState() => _AppState();
+}
+
+class _AppState extends State<App> {
+  bool isLoading = true;
+
+  @override
   Widget build(BuildContext context) {
+    Future.delayed(const Duration(milliseconds: 9000), () {
+      setState(() {
+        isLoading = false;
+      });
+
+
+    });
     SystemChrome.setSystemUIOverlayStyle(
       SystemUiOverlayStyle.dark.copyWith(statusBarColor: Colors.transparent),
     );
@@ -48,14 +64,23 @@ class App extends StatelessWidget {
   }
 
   Widget _handleCurrentScreen() {
-    bool seen = (prefs.getBool('seen') ?? false);
-    bool loggedIn = (prefs.getBool('loggedIn') ?? false);
+    bool seen = (widget.prefs.getBool('seen') ?? false);
+    bool loggedIn = (widget.prefs.getBool('loggedIn') ?? false);
     if (seen) {
       if (loggedIn) {
-        return HomePage();
+        if (isLoading) {
+          return SplashScreen();
+        } else {
+          return HomePage();
+        }
       }
-      return SignUp(prefs: prefs);
+
+      if (isLoading) {
+        return SplashScreen();
+      } else {
+        return SignUp(prefs: widget.prefs);
+      }
     }
-    return OnBoardingPage(prefs: prefs);
+    return OnBoardingPage(prefs: widget.prefs);
   }
 }
